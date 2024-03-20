@@ -1,5 +1,4 @@
 const express = require('express')
-const sqlite = require('sqlite')
 const cors = require('cors')
 
 const app = express()
@@ -14,6 +13,8 @@ const cors_options = {
     methods: '*',
 }
 app.use(cors(cors_options));
+
+app.use('', require('./routes/stats'))
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/ you look good today`)
