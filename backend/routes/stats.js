@@ -1,40 +1,30 @@
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose()
-
-const db = new sqlite3.Database("/home/benni/Schreibtisch/ttt_stats.db", (err) => {
-    if (err) {
-      console.error(err.message)
-    }
-    console.log('Connected to the chinook database.')
-})
+const { open } = require('sqlite')
 
 const router = express.Router()
 
-router.get('/round', (req, res) => {
-    db.all('SELECT * FROM round', (err, rows) => {
-        if (err) {
-            console.error(err.message)
-        }
-        res.send(rows)
+router.get('/stats', async (req, res) => {
+    const db = await open({
+        filename: '/home/benni/Schreibtisch/ttt_stats.db',
+        driver: sqlite3.Database
     })
-})
 
-router.get('/player', (req, res) => {
-    db.all('SELECT * FROM player', (err, rows) => {
-        if (err) {
-            console.error(err.message)
+    const players = await db.all("SELECT * FROM player")
+    const rounds = await db.all("SELECT * FROM round")
+    
+    for (round in rounds) {
+        const playerInRound = await db.all("SELECT * FROM playerInRound WHERE playerInRound.roundID = ?", [rounds[round]["roundID"]])
+        rounds[round]["playerInRound"] = playerInRound
+    }
+    
+    res.send(
+        {
+            player: players,
+            round: rounds,
         }
-        res.send(rows)
-    })
-})
-
-router.get('/playerInRound', (req, res) => {
-    db.all('SELECT * FROM playerInRound', (err, rows) => {
-        if (err) {
-            console.error(err.message)
-        }
-        res.send(rows)
-    })
+    )
+    db.close()
 })
 
 module.exports = router

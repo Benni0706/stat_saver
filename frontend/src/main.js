@@ -1,9 +1,9 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import root from './root.vue'
 import axios from 'axios'
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
-createApp(App).mount('#app')
+createApp(root).mount('#app')
