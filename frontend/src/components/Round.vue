@@ -10,6 +10,10 @@ if (props.round.winner_team == "innocents") {
     color = "bg-gray-500"
 } else if (props.round.winner_team == "clowns" || props.round.winner_team == "jesters") {
     color = "bg-purple-500"
+} else if (props.round.winner_team == "serialkillers") {
+    color = "bg-cyan-700"
+} else if (props.round.winner_team == "dunces") {
+    color = "bg-pink-500"
 } else {
     color = "bg-orange-950"
 }
@@ -17,7 +21,7 @@ if (props.round.winner_team == "innocents") {
 
 <template>
     <div class="rounded-lg mb-1 hover:cursor-pointer">
-        <button :class="'grid grid-cols-4 p-1 w-full rounded-lg hover:opacity-80 peer focus:opacity-80 ' + color">
+        <button :class="'grid grid-cols-4 p-1 w-full rounded-lg hover:opacity-80 peer focus:opacity-80 bg-    ' + color">
             <span class="text-left">{{ props.round.date }}</span>
             <span class="text-left">{{ props.round.winner_team }}</span>
             <span class="text-left">{{ props.round.player_count }}</span>
