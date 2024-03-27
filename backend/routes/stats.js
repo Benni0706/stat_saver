@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/stats', async (req, res) => {
     const db = await open({
-        filename: '/home/benni/Schreibtisch/ttt_stats.db',
+        filename: '/home/steam/server_1/garrysmod/data/stat_saver/ttt_stats.db',
         driver: sqlite3.Database
     })
 

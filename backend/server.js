@@ -14,7 +14,7 @@ const cors_options = {
 }
 app.use(cors(cors_options));
 
-app.use('', require('./routes/stats'))
+app.use('/stat_saver_api', require('./routes/stats'))
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/ you look good today`)
