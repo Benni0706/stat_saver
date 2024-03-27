@@ -14,7 +14,7 @@ const tab = ref(0)
 const sortDirection = ref(true)
 const lastSortValue = ref("")
 
-const response = await fetch("http://localhost:3000/stats")
+const response = await fetch("https://tallarek.com/stat_saver_api/stats")
 const stats = await response.json()
 players.value = stats.player
 rounds.value = stats.round
