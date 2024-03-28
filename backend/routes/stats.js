@@ -14,8 +14,11 @@ router.get('/stats', async (req, res) => {
     const rounds = await db.all("SELECT * FROM round ORDER BY date DESC")
     
     for (round in rounds) {
-        const playerInRound = await db.all("SELECT * FROM playerInRound WHERE playerInRound.roundID = ?", [rounds[round]["roundID"]])
+        const playerInRound = await db.all("SELECT * FROM playerInRound WHERE roundID = ?", [rounds[round]["roundID"]])
         rounds[round]["playerInRound"] = playerInRound
+
+        const player_count = await db.get("SELECT COUNT(*) AS player_count FROM playerInRound WHERE roundID = ?", [rounds[round]["roundID"]])
+        rounds[round]["player_count"] = player_count["player_count"]
     }
 
     for (player in players) {
