@@ -1,5 +1,16 @@
 <script setup>
+import equipNames from "@/assets/equipNames.json"
+
 const props = defineProps(['player'])
+
+function getEquipNames(equipment) {
+  if (equipNames[equipment] || equipNames[equipment] == "") {
+    return equipNames[equipment]
+  } else {
+    return equipment
+  }
+}
+
 </script>
 
 <template>
@@ -58,7 +69,7 @@ const props = defineProps(['player'])
                             <th class="p-1">Gekauft</th>
                         </tr>
                         <tr v-for="equipment in player.equipment" class="border-black border-y">
-                            <td>{{ equipment.label }}</td>
+                            <td>{{ getEquipNames(equipment.label) }}</td>
                             <td class="text-center">{{ equipment.amount }}</td>
                         </tr>
                     </table>

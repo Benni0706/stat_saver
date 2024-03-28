@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Round from "@/components/Round.vue"
 import Player from "@/components/Player.vue"
+import equipNames from "@/assets/equipNames.json"
 
 document.title = "TTT Legoland Stats"
 
@@ -49,6 +50,14 @@ function sortBy(data, sortValue) {
 
 function sortPlayer(sortValue) {
   sortBy(players, sortValue)
+}
+
+function getEquipNames(equipment) {
+  if (equipNames[equipment] || equipNames[equipment] == "") {
+    return equipNames[equipment]
+  } else {
+    return equipment
+  }
 }
 
 sortBy(players, "name")
@@ -112,7 +121,7 @@ sortBy(players, "name")
                             <th class="p-1">Gekauft</th>
                         </tr>
                         <tr v-for="equipment in equipAmount" class="border-black border-y">
-                            <td>{{ equipment.label }}</td>
+                            <td>{{ getEquipNames(equipment.label) }}</td>
                             <td class="text-center">{{ equipment.amount }}</td>
                         </tr>
                     </table>
