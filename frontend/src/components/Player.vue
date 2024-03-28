@@ -4,7 +4,7 @@ import equipNames from "@/assets/equipNames.json"
 const props = defineProps(['player'])
 
 function getEquipNames(equipment) {
-  if (equipNames[equipment]) {
+  if (equipNames[equipment] || equipNames[equipment] == "") {
     return equipNames[equipment]
   } else {
     return equipment
