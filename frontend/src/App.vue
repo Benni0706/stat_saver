@@ -53,7 +53,7 @@ function sortPlayer(sortValue) {
 }
 
 function getEquipNames(equipment) {
-  if (equipNames[equipment]) {
+  if (equipNames[equipment] || equipNames[equipment] == "") {
     return equipNames[equipment]
   } else {
     return equipment
