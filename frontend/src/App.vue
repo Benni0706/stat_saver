@@ -76,7 +76,7 @@ sortBy(players, "name")
     <div class="bg-gray-700 h-full min-h-screen rounded-xl mx-2">
       <div v-if="tab == 0" class="p-2">
         <p class="text-center w-full text-4xl font-bold">{{ rounds.length }} Runden</p>
-        <p class="text-center">seit {{ rounds[0].date.split('-')[0] }}</p>
+        <p class="text-center">seit {{ rounds[rounds.length - 1].date.split('-')[0] }}</p>
         <div class="grid grid-cols-3 pb-4 pl-2 mt-1">
             <div class="w-fit">
                 <h2 class="font-bold text-center">Winrates per Team</h2>
